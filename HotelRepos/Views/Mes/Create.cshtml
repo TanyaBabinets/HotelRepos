@@ -1,0 +1,22 @@
+﻿@model HotelRepos.Models.Messages
+
+
+<div class="text-block">
+    <h1>Добавить отзыв </h1>
+</div>
+<form asp-action="Create" method="post">
+       <div id="label">
+           
+   
+        <textarea id="Ovziv" style="width:800px; height:200px; position:center; margin-top:10px;" asp-for="Message"></textarea>
+        <input type="hidden" id="UserName" name="UserName" required />
+    </div>
+    <div class="button">
+        <button type="submit" id="buttons">Отправить</button>              
+    </div>
+    <div class="button">
+        <a asp-controller="Mes" asp-action="AllMes" id="buttons">Назад</a>
+    </div>
+</form>
+
+

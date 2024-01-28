@@ -1,0 +1,70 @@
+﻿@model IEnumerable<HotelRepos.Models.Messages>
+
+@{
+	ViewBag.Title = "AllMes";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="text-block">
+	<h1>Отзывы</h1>
+</div>
+
+
+@if (Model != null)
+{
+	@if (Context.Session.GetString("Id")!=null)
+
+	{
+		<div>
+
+		<a asp-controller="Mes" asp-action="Create" style="color:brown font-size:42px text-align:center">Добавить отзыв</a>
+	</div>
+	}
+	else
+
+	{
+		<p>
+			Чтобы добавить отзыв, пожалуйста, <a asp-controller="Account" color="brown"
+			style="font-size:26px" margin="10px" asp-action="Login">войдите</a> или <a asp-controller="Account" color="brown" style="font-size:26px" asp-action="Register">зарегистрируйтесь</a>
+		</p>
+	}
+}
+@if (User.Identity.IsAuthenticated)
+{
+	<p>
+		<a asp-controller="Mes" asp-action="Create">Создать отзыв</a>
+	</p>
+}
+<div class="button">
+			<a asp-controller="Home" asp-action="Index" id="buttons" style="margin-left:2px">Назад</a>
+		</div>
+
+		<div style="display: flex;">
+			<div id=texts>
+				@foreach (var mes in Model)
+				{
+					<div>
+						<p><strong>@mes.user.Login</strong>(@(mes.Datetime != null ? mes.Datetime.Value.ToString("dd.MM.yyyy HH:mm") : "Нет данных")):</p>
+						<p>@mes.Message</p>
+
+					</div>
+					<hr />}
+
+				@if (!Model.Any())
+        {
+            <p>Нет отзывов.</p>
+        }
+    </div>
+			
+			<div class="imgs">
+			
+
+				<img src="~/img/rest.jpg" alt="main">
+				<img src="~/img/tube.jpg" alt="main">
+				<img src="~/img/rest1.jpg" alt="main">
+
+			
+			</div>
+		</div>
+
